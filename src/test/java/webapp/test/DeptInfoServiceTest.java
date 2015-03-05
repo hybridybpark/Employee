@@ -47,7 +47,7 @@ public class DeptInfoServiceTest {
 		
 		EmployeeDataSource ds = new EmployeeDataSource();
 		
-		InputStream inputStream = PropertiesTest.class.getResourceAsStream("/webapp/resource/db.properties");
+		InputStream inputStream = PropertiesTest.class.getResourceAsStream("/webapp/spring/db.properties");
 		
 		Properties pro = new Properties();
 		

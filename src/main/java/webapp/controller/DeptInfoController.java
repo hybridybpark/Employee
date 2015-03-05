@@ -23,15 +23,15 @@ import webapp.service.DeptInfoService;
  * Servlet implementation class DeptController
  */
 @WebServlet("/dept/info")
-public class DeptController extends HttpServlet {
+public class DeptInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static Log log = LogFactory.getLog(DeptController.class);
+	private static Log log = LogFactory.getLog(DeptInfoController.class);
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeptController() {
+    public DeptInfoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -67,6 +67,8 @@ public class DeptController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		out.print("<h1>dept called<h1>");
+		
+		log.info("factory = " + factory);
 		
 		DeptInfoService service = factory.getBean(DeptInfoService.class);
 		

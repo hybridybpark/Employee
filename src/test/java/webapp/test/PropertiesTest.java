@@ -13,7 +13,7 @@ public class PropertiesTest {
 //		
 //		dbpro.load(in);
 //		
-		InputStream inputStream = PropertiesTest.class.getResourceAsStream("/webapp/resource/db.properties");
+		InputStream inputStream = PropertiesTest.class.getResourceAsStream("/webapp/spring/db.properties");
 		
 		dbpro.load(inputStream);
 		

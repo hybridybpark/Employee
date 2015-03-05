@@ -19,7 +19,7 @@ import webapp.model.Dept;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/main/resources/webapp/resource/beans.xml")
+@ContextConfiguration("classpath:/webapp/spring/beans.xml")
 public class DeptDaoTest {	
 	
 	static Logger log = Logger.getLogger(DeptDaoTest.class);

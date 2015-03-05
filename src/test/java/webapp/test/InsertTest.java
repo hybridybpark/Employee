@@ -33,7 +33,7 @@ public class InsertTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		factory = new GenericXmlApplicationContext("classpath:/webapp/resource/beans.xml");
+		factory = new GenericXmlApplicationContext("classpath:/webapp/spring/beans.xml");
 	}
 
 	@AfterClass

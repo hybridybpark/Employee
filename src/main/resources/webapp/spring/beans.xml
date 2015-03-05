@@ -18,7 +18,7 @@
 	<property name="dataSource" ref="dataSource"/>
 </bean> -->
 
-<bean class="webapp.service.DeptInfoService">
+<bean id="deptInfoServiceSetBeans" class="webapp.service.DeptInfoService">
 	<property name="dataSource" ref="dataSource"/>
 	<property name="deptdao" ref="deptDao"/>
 </bean>
