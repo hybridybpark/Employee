@@ -27,13 +27,16 @@ public class SpringjdbcDeptDao implements DeptDao{
 	@Override
 	public List<Dept> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		JdbcTemplate template = new JdbcTemplate(dataSource); 		
+		return template.query(SELECT_ALL, new BeanPropertyRowMapper<Dept>(Dept.class));
 	}
 
 	@Override
 	public List<Dept> selectAllwithEmps() {
 		// TODO Auto-generated method stub
-		return null;
+		JdbcTemplate template = new JdbcTemplate(dataSource);
+		DeptResultSetExtractor extractor  = new DeptResultSetExtractor();
+		return template.query(SELECT_ALL_WITH_EMP, new BeanPropertyRowMapper<Dept>(Dept.class));
 	}
 
 	@Override

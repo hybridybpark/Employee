@@ -73,5 +73,36 @@ public class BeanTest {
 		}
 		
 	}
+	@Test
+	public void testGetDeptinfoAll() throws Exception {
+		log.info("### testGetDeptInfoAll");
+		
+		DeptInfoService service = factory.getBean(DeptInfoService.class);
+		
+		List<Dept> list = service.getDeptInfoAll();	
+		assertNotNull(list);
+		for(Dept dept : list){
+			log.info("DEPT : "+dept.getDeptno()+" "+dept.getDname());			
+		}		
+	}
+	@Test
+	public void testGetDeptInfoAllWithEmps() throws Exception {
+		log.info("### testGetDeptInfoAllWithEmps");
+		
+		DeptInfoService service = factory.getBean(DeptInfoService.class);
+		
+		List<Dept> list = service.getDeptInfoAllWithEmps();	
+		assertNotNull(list);
+		for(Dept dept : list){
+			log.info("DEPT : "+dept.getDeptno()+" "+dept.getDname());
+			List<Emp> emps = dept.getEmps();
+			if(emps != null){
+				for(Emp e : emps){
+					
+					log.info("EMP : "+e.getEmpno()+" "+e.getEname()+" "+e.getJob()+" "+e.getMgr()+" "+e.getHiredate()+" "+e.getSal()+" "+e.getComm()+" "+e.getDeptno());
+				}
+			}
+		}		
+	}
 
 }

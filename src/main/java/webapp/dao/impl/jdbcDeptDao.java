@@ -9,40 +9,99 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import webapp.dao.DeptDao;
 import webapp.model.Dept;
-
 import webapp.model.Emp;
 import webapp.util.GlobalVars;
 
 public class jdbcDeptDao implements DeptDao{
 
-	static Logger log = Logger.getLogger(jdbcDeptDao.class);
+//	static Logger log = Logger.getLogger(jdbcDeptDao.class);
+	
+	static Log log = LogFactory.getLog(jdbcDeptDao.class);
 	
 	DataSource dataSource;
 	
 	@Override
 	public List<Dept> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		log.info("##########");
+		log.info("selectAll");
+		log.info("##########");
+		
+		Connection con = DataSourceUtils.getConnection(dataSource);
+		
+//		Connection con = GlobalVars.con.get();
+		System.out.println(con);
+		PreparedStatement pstmt;
+		List<Dept> list = new ArrayList<Dept>();
+		try {
+			pstmt = con.prepareStatement(SELECT_ALL);	
+		
+			ResultSet rs = pstmt.executeQuery();			
+			
+			while(rs.next()){
+				Dept dept = new Dept();
+				dept.setDeptno(rs.getInt("deptno"));
+				dept.setDname(rs.getString("dname"));
+				dept.setLoc(rs.getString("loc"));
+				
+				list.add(dept);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block			
+			throw new DataRetrievalFailureException("Fail",e);
+		}
+
+		return list;
 	}
 
 	@Override
 	public List<Dept> selectAllwithEmps() {
 		// TODO Auto-generated method stub
-		return null;
+		log.info("#################");
+		log.info("selectAllWithEmps");
+		log.info("#################");
+		
+		Connection con = DataSourceUtils.getConnection(dataSource);
+		
+		PreparedStatement pstmt;
+		List<Dept> list = new ArrayList<Dept>();
+		int k=0;
+		try {
+			pstmt = con.prepareStatement(SELECT_ALL);		
+			
+			ResultSet rs = pstmt.executeQuery();			
+			
+			
+			while(rs.next()){
+				int no = rs.getInt("deptno");
+				Dept dept = selectByDeptnowithEmps(no);
+				list.add(dept);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new DataRetrievalFailureException("Fail",e);
+		}
+		
+		return list;
 	}
 
 	@Override
 	public Dept selectByDeptno(Integer deptno)   {
 		// TODO Auto-generated method stub
-//		log.info("###################################");
-//		log.info("selectByDeptno("+deptno+")");
-//		log.info("###################################");
+		log.info("###################################");
+		log.info("selectByDeptno("+deptno+")");
+		log.info("###################################");
 		Connection con = DataSourceUtils.getConnection(dataSource);
 		
 //		Connection con = GlobalVars.con.get();

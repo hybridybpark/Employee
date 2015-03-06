@@ -14,9 +14,18 @@
 	<property name="password" value="${oracle.password}"/>	
 </bean>
 
-<!-- bean id="deptDao" class="webapp.dao.impl.SpringjdbcDeptDao">
+<!-- <bean id="deptDao" class="webapp.dao.impl.jdbcDeptDao"> -->
+<!-- 	<property name="dataSource" ref="dataSource"/> -->
+<!-- </bean> -->
+
+<bean id="deptDao" class="webapp.dao.impl.SpringjdbcDeptDao">
 	<property name="dataSource" ref="dataSource"/>
-</bean> -->
+</bean>
+
+<!-- <bean id="deptDao" class="org.mybatis.spring.mapper.MapperFactoryBean"> -->
+<!-- 	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property> -->
+<!-- 	<property name="mapperInterface" value="webapp.dao.DeptDao"></property> -->
+<!-- </bean> -->
 
 <bean id="deptInfoServiceSetBeans" class="webapp.service.DeptInfoService">
 	<property name="dataSource" ref="dataSource"/>
@@ -34,9 +43,6 @@
 	</property>
 </bean>
 
-<bean id="deptDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	<property name="mapperInterface" value="webapp.dao.DeptDao"></property>
-</bean>
+
 
 </beans>

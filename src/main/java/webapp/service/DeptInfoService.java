@@ -2,6 +2,7 @@ package webapp.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -15,7 +16,6 @@ import webapp.exception.ConnectionFailException;
 import webapp.exception.DeptAccessException;
 import webapp.exception.DeptNotFoundException;
 import webapp.model.Dept;
-
 import webapp.util.GlobalVars;
 
 public class DeptInfoService {
@@ -52,5 +52,14 @@ public class DeptInfoService {
 		Dept dept = deptdao.selectByDeptno(deptno);		
 		
 		return dept;
+	}
+	
+	public List<Dept> getDeptInfoAll(){
+		List<Dept> list = deptdao.selectAll();
+		return list;
+	}
+	public List<Dept> getDeptInfoAllWithEmps(){
+		List<Dept> list = deptdao.selectAllwithEmps();
+		return list;
 	}
 }

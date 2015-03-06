@@ -14,6 +14,10 @@ public interface DeptDao {
 	
 	public static final String SELECT_BY_DEPTNO_WITH_EMP = "select * from dept d left join emp e on d.deptno = e.deptno where d.deptno = ?";
 	
+	public static final String SELECT_ALL = "select * from dept";
+	
+	public static final String SELECT_ALL_WITH_EMP = "select * from dept d left join emp e on d.deptno = e.deptno";
+	
 	public void setDataSource(DataSource ds);
 	/*
 	 * multiple row
