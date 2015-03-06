@@ -65,29 +65,81 @@ public class jdbcDeptDao implements DeptDao{
 	@Override
 	public List<Dept> selectAllwithEmps() {
 		// TODO Auto-generated method stub
-		log.info("#################");
-		log.info("selectAllWithEmps");
-		log.info("#################");
+		log.info("######################");
+		log.info("selectAllWithEmps_JDBC");
+		log.info("######################");
 		
 		Connection con = DataSourceUtils.getConnection(dataSource);
 		
 		PreparedStatement pstmt;
 		List<Dept> list = new ArrayList<Dept>();
-		int k=0;
+		
 		try {
-			pstmt = con.prepareStatement(SELECT_ALL);		
+			pstmt = con.prepareStatement(SELECT_ALL_WITH_EMP);		
 			
 			ResultSet rs = pstmt.executeQuery();			
-			
-			
+							
+			boolean currentExist = false;
+			int currentIndex =0;
 			while(rs.next()){
-				int no = rs.getInt("deptno");
-				Dept dept = selectByDeptnowithEmps(no);
-				list.add(dept);
+				if(list.size()==0){
+					currentExist=false;
+				}else{
+					for(int i=0;i<list.size();i++){
+						int no = rs.getInt("deptno");
+						if(	list.get(i).getDeptno()==no){
+							log.info("RRRRRR"+i+no);						
+							currentExist=true;
+							currentIndex=i;
+							break;
+						}else{
+							currentExist=false;
+						}
+					}
+				}				
+				if(currentExist==false){
+					log.info("exist false");
+					Dept dept = new Dept();
+					dept.setDeptno(rs.getInt("deptno"));
+					dept.setDname(rs.getString("dname"));
+					dept.setLoc(rs.getString("loc"));
+					ArrayList<Emp> emplist = new ArrayList<Emp>();
+					Emp emp  = new Emp();
+					emp.setComm(rs.getFloat("comm"));
+					emp.setDeptno(rs.getInt("deptno"));
+					emp.setEmpno(rs.getInt("empno"));
+					emp.setEname(rs.getString("ename"));
+					emp.setHiredate(rs.getDate("hiredate"));
+					emp.setJob(rs.getString("job"));
+					emp.setMgr(rs.getInt("mgr"));
+					emp.setSal(rs.getFloat("sal"));
+					emplist.add(emp);
+					dept.setEmps(emplist);
+					list.add(list.size(),dept);
+				}else{
+					log.info("exist true");
+					Dept dept = list.get(currentIndex);
+					ArrayList<Emp> emplist = (ArrayList<Emp>) dept.getEmps();
+					Emp emp  = new Emp();
+					emp.setComm(rs.getFloat("comm"));
+					emp.setDeptno(rs.getInt("deptno"));
+					emp.setEmpno(rs.getInt("empno"));
+					emp.setEname(rs.getString("ename"));
+					emp.setHiredate(rs.getDate("hiredate"));
+					emp.setJob(rs.getString("job"));
+					emp.setMgr(rs.getInt("mgr"));
+					emp.setSal(rs.getFloat("sal"));
+					emplist.add(emp);
+				}
+			
+//			while(rs.next()){
+//				int no = rs.getInt("deptno");
+//				Dept dept = selectByDeptnowithEmps(no);
+//				list.add(dept);
+//			}
+			
+			
 			}
-			
-			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			throw new DataRetrievalFailureException("Fail",e);

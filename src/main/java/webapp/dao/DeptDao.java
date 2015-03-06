@@ -16,7 +16,7 @@ public interface DeptDao {
 	
 	public static final String SELECT_ALL = "select * from dept";
 	
-	public static final String SELECT_ALL_WITH_EMP = "select * from dept d left join emp e on d.deptno = e.deptno";
+	public static final String SELECT_ALL_WITH_EMP = "SELECT d.deptno as deptno, d.dname as dname, d.loc as loc, e.empno as empno,e.ename as ename,e.job as job,e.mgr as mgr,e.hiredate as hiredate,e.sal as sal,e.comm as comm	FROM dept d LEFT JOIN emp e ON d.deptno = e.deptno ORDER BY d.deptno asc, e.empno asc";
 	
 	public void setDataSource(DataSource ds);
 	/*
