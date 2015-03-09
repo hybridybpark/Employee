@@ -23,7 +23,7 @@ public interface DeptDao {
 	 * multiple row
 	 */
 	public List<Dept> selectAll();
-	public List<Dept> selectAllwithEmps();
+	public List<Dept> selectAllWithEmps();
 	
 	/*
 	 * single row by primary key

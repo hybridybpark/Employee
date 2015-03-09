@@ -21,4 +21,13 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<!-- MyListener Test -->
+	<context-param>
+	    <param-name>classname</param-name>
+	    <param-value>mysql.mysql</param-value>
+	</context-param>
+	<listener>
+	    <listener-class>webapp.listener.MyListener</listener-class>
+	</listener>
 </web-app>

@@ -34,7 +34,7 @@ public class SpringjdbcDeptDao implements DeptDao{
 	}
 
 	@Override
-	public List<Dept> selectAllwithEmps() {
+	public List<Dept> selectAllWithEmps() {
 		// TODO Auto-generated method stub
 		log.info("###################################");
 		log.info("selectAllWithEmps_Spring");
