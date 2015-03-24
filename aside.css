@@ -1,0 +1,50 @@
+
+	body{
+		width: 300px;
+	}
+	#tabmenu {
+		border: 1px solid black;
+	}
+	section#tabs > label {
+		border: 1px solid blue;
+		padding: 2px;
+		margin: 0;
+		float: left;
+	}
+	section#tabs > label:HOVER {
+		border-radius: 10px;
+	}
+	section#tabs{
+		margin: 0 auto;
+		width: 220px;
+		
+		overflow: hidden;
+		
+	}
+	section#contents > div{
+		border: 1px solid olive;
+		display: none;
+	}
+	#tabmenu > input[id=tab1]:checked ~ section[id^=contents] > div:nth-child(1){
+		display: block;
+		background-color: orange;
+	}
+	#tabmenu > input[id=tab2]:checked ~ section[id^=contents] > div:nth-child(2){
+		display: block;
+		background-color: orange;
+	}
+	#tabmenu > input[id=tab3]:checked ~ section[id^=contents] > div:nth-child(3){
+		display: block;
+		background-color: orange;
+	}
+	#tabmenu > input[id=tab4]:checked ~ section[id^=contents] > div:nth-child(4){
+		display: block;
+		background-color: orange;
+	}
+	#tabmenu > input[id=tab5]:checked ~ section[id^=contents] > div:nth-child(5){
+		display: block;
+		background-color: orange;
+	}
+	#tabmenu > input{
+		display: none;
+	}
